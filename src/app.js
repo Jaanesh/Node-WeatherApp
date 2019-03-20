@@ -6,6 +6,10 @@ const foreCastObj=require('./forecast');
 
 const app=express();
 
+// setting up port for our app to take the port number from heroku environment
+//while running in local code will take port as 3000 and takes it frome env when deployed to heroku
+const port=process.env.PORT || 3000;
+
 //setting up the path for serving static pulic directory and dynamic handlebar directoy
 const publicDirectory=path.join(__dirname,'../public');
 const handleBarTemplateViewsDirectory=path.join(__dirname,'../HandleBar_Templates/views');
@@ -98,8 +102,8 @@ app.get('*',(req,res)=>{
     })
 })
 
-app.listen(3000,()=>{
-    console.log('Server started on port 3000');
+app.listen(port,()=>{
+    console.log('Server started on port '+port);
 })
 
 

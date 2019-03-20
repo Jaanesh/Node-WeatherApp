@@ -19,7 +19,9 @@ function getForeCast(placeobj,callback){
     console.log('latitude ='+placeobj.latitude);
     console.log('longitude='+placeobj.longitude);
 
-    fetch('http://localhost:3000/getWeatherForeCast?latitude='+placeobj.latitude+"&longitude="+placeobj.longitude)
+    //change url to /getWeatherForeCast?latitude='+placeobj.latitude+"&longitude="+placeobj.longitude
+    // while running in local url=http://localhost:3000/getWeatherForeCast?latitude='+placeobj.latitude+"&longitude="+placeobj.longitude
+    fetch('/getWeatherForeCast?latitude='+placeobj.latitude+"&longitude="+placeobj.longitude)
     .then(response=> response.json())
     .then(jsonData=>callback(undefined,jsonData.summary))    
     .catch(errorObj=>callback(errorObj.error,undefined));
@@ -102,7 +104,11 @@ function onEnteringPlace(){
 
 
 function getSuggestionsFromMapBox(place,callback){
-       fetch('http://localhost:3000/getPlaceSuggestions?place='+place)
+
+   // while running in prod /getPlaceSuggestions?place='+place
+   // in local http://localhost:3000/getPlaceSuggestions?place='+place
+
+       fetch('/getPlaceSuggestions?place='+place)
             .then(response=> response.json())
             .then(jsonData=>callback(undefined,jsonData))    
             .catch(errorObj=>callback(errorObj.error,undefined));
